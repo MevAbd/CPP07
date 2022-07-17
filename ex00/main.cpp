@@ -1,5 +1,10 @@
 #include "whatever.hpp"
 
+int foo(int x)
+{
+	return (x + 10);
+}
+
 int	main( void )
 {
 	std::cout << "*********************TESTS SUBJECT*********************" <<  std::endl;
@@ -35,5 +40,11 @@ int	main( void )
 	std::cout << "k = " << k << ", p = " << p << std::endl;
 	std::cout << "min( k, p ) = " << ::min( k, p ) << std::endl;
 	std::cout << "max( k, p ) = " << ::max( k, p ) << std::endl;
+
+	std::cout << std::endl << std::endl;
+	std::cout << "test1 = " << foo(6) << " test2 = " << foo(42) << std::endl;
+	std::cout << "min<int>(test1, test2) = " << min<int>(foo(6), foo(42)) << std::endl;
+	std::cout << "max<int>(test1, test2) = " << max<int>(foo(6), foo(42)) << std::endl;
+
 	return 0;
 }
