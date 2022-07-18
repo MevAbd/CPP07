@@ -6,7 +6,7 @@
 /*   By: malbrand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 22:15:38 by malbrand          #+#    #+#             */
-/*   Updated: 2022/07/19 00:32:45 by malbrand         ###   ########.fr       */
+/*   Updated: 2022/07/19 00:49:37 by malbrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ template <typename T> class Array
 				}
 				Array(const Array &rhs) : _len(0)
 				{
-					std::cout << "Copy constructor called size : " << _len << " for this array." << std::endl;
+					std::cout << "Copy constructor called size : " << rhs._len << " for this array." << std::endl;
 					*this = rhs;
 				}
 	//***********************************************************************************//
