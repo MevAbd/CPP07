@@ -1,0 +1,94 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: malbrand <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/18 22:15:45 by malbrand          #+#    #+#             */
+/*   Updated: 2022/07/19 00:33:37 by malbrand         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <iostream>
+#include "Array.hpp"
+
+#define MAX_VAL 750
+int main(int, char**)
+{
+	
+	std::cout << "**************************CLASSIC TEST*****************************" << std::endl;
+    Array<int> numbers(MAX_VAL);
+    int* mirror = new int[MAX_VAL];
+    srand(time(NULL));
+    for (int i = 0; i < MAX_VAL; i++)
+    {
+        const int value = rand();
+        numbers[i] = value;
+        mirror[i] = value;
+    }
+    //SCOPE
+    {
+        Array<int> tmp = numbers;
+        Array<int> test(tmp);
+    }
+
+    for (int i = 0; i < MAX_VAL; i++)
+    {
+        if (mirror[i] != numbers[i])
+        {
+            std::cerr << "didn't save the same value!!" << std::endl;
+            return 1;
+        }
+    }
+    try
+    {
+        numbers[-2] = 0;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    try
+    {
+        numbers[MAX_VAL] = 0;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+
+    for (int i = 0; i < MAX_VAL; i++)
+    {
+        numbers[i] = rand();
+    }
+    delete [] mirror;//
+	
+
+	std::cout << std::endl << std::endl;
+	std::cout << "**************************TEST CHAR*****************************" << std::endl;
+	const std::string	alpha = "abcdefghijklmnopqrstuvwxyz";
+	std::string			alphaRandom = "";
+
+	for (int i = 0; i < 26; i++)
+		alphaRandom += alpha[std::rand() % alpha.size()];
+
+
+	std::cout << "Test constructor called" << std::endl;
+	Array<std::string>	str(26);
+	for (int i = 0; i < 26; i++)
+		std::cout << alphaRandom[i] << " ";
+	std::cout << std::endl;
+
+	std::cout << "Test copy constructor called" << std::endl;
+	Array<std::string>	str_cpy(str);
+	for (int i = 0; i < 26; i++)
+		if (str[i] != str_cpy[i])
+		{
+			std::cout << "ERROR CPY" << std::endl;
+			return (1);
+		}
+	std::cout << "GG CPY IS OK" << std::endl;
+
+    return 0;
+}
